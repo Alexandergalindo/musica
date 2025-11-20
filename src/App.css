@@ -1,271 +1,282 @@
 /* ============================================
-   ESTILOS - YouTube Music
-   Versión simplificada para principiantes
+   ESTILOS YOUTUBE MUSIC
    ============================================ */
 
+/* Variables CSS - Colores YouTube Music */
 :root {
-  --bg-dark: #0f0f0f;
-  --bg-card: #181818;
-  --bg-hover: #272727;
-  --bg-sidebar: #212121;
-  --text-primary: #ffffff;
-  --text-secondary: #aaaaaa;
-  --accent-red: #ff0000;
+  --ytm-bg-primary: #0f0f0f;
+  --ytm-bg-secondary: #181818;
+  --ytm-bg-tertiary: #212121;
+  --ytm-text-primary: #ffffff;
+  --ytm-text-secondary: #aaaaaa;
+  --ytm-text-tertiary: #717171;
+  --ytm-accent: #ff0000;
+  --ytm-accent-hover: #cc0000;
+  --ytm-border: #303030;
+  --transition: all 0.2s ease;
 }
 
+/* Reset y base */
 * {
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--bg-dark);
-  color: var(--text-primary);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: var(--ytm-bg-primary);
+  color: var(--ytm-text-primary);
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
+/* Contenedor principal */
 .app-container {
-  background-color: var(--bg-dark);
+  background-color: var(--ytm-bg-primary);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-bottom: 80px;
+  padding-bottom: 80px; /* Espacio para el reproductor fijo */
 }
 
 /* ============================================
-   HEADER
+   HEADER - Estilo YouTube Music
    ============================================ */
-
 .ytm-header {
-  background-color: var(--bg-card);
-  border-bottom: 1px solid #303030;
-  padding: 0.75rem 0;
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color: var(--ytm-bg-secondary);
+  border-bottom: 1px solid var(--ytm-border);
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
 }
 
 .ytm-logo {
-  color: var(--text-primary);
-  font-size: 1.25rem;
+  color: var(--ytm-text-primary);
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .ytm-logo-icon {
-  background-color: var(--accent-red);
-  color: white;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  background-color: var(--ytm-accent);
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.875rem;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .ytm-search {
-  max-width: 500px;
+  max-width: 640px;
   margin: 0 auto;
 }
 
 .ytm-search .form-control {
-  background-color: var(--bg-dark);
-  border: 1px solid #303030;
-  color: var(--text-primary);
-  border-radius: 40px;
-  padding: 0.5rem 1rem;
+  background-color: var(--ytm-bg-tertiary);
+  border: 1px solid var(--ytm-border);
+  color: var(--ytm-text-primary);
+  border-radius: 40px 0 0 40px;
+  padding: 10px 16px;
+  font-size: 16px;
 }
 
 .ytm-search .form-control:focus {
-  background-color: var(--bg-dark);
-  border-color: var(--text-secondary);
-  color: var(--text-primary);
+  background-color: var(--ytm-bg-tertiary);
+  border-color: var(--ytm-border);
+  color: var(--ytm-text-primary);
   box-shadow: none;
 }
 
 .ytm-search .form-control::placeholder {
-  color: var(--text-secondary);
+  color: var(--ytm-text-tertiary);
+}
+
+.ytm-search .btn-link {
+  color: var(--ytm-text-secondary);
+  text-decoration: none;
+  padding: 8px 12px;
+}
+
+.ytm-search .btn-link:hover {
+  color: var(--ytm-text-primary);
 }
 
 /* ============================================
    LAYOUT PRINCIPAL
    ============================================ */
-
 .main-layout {
   display: flex;
-  flex: 1;
-  overflow: hidden;
+  margin-top: 64px; /* Altura del header */
+  min-height: calc(100vh - 64px);
 }
 
 /* ============================================
    SIDEBAR IZQUIERDO
    ============================================ */
-
 .sidebar-left {
   width: 240px;
-  background-color: var(--bg-sidebar);
-  padding: 1rem 0;
-  flex-shrink: 0;
-  border-right: 1px solid #303030;
+  background-color: var(--ytm-bg-secondary);
+  border-right: 1px solid var(--ytm-border);
+  position: fixed;
+  left: 0;
+  top: 64px;
+  bottom: 80px; /* Altura del reproductor */
+  overflow-y: auto;
+  padding: 8px 0;
+  z-index: 999;
 }
 
 .sidebar-nav {
-  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0 8px;
 }
 
 .sidebar-item {
   display: flex;
   align-items: center;
-  padding: 0.75rem 1rem;
-  color: var(--text-secondary);
+  padding: 10px 16px;
+  color: var(--ytm-text-primary);
   text-decoration: none;
-  border-radius: 8px;
-  transition: background-color 0.2s;
-  margin-bottom: 0.25rem;
+  border-radius: 10px;
+  transition: var(--transition);
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .sidebar-item:hover {
-  background-color: var(--bg-hover);
-  color: var(--text-primary);
+  background-color: var(--ytm-bg-tertiary);
+  color: var(--ytm-text-primary);
 }
 
 .sidebar-item.active {
-  background-color: var(--bg-hover);
-  color: var(--text-primary);
+  background-color: var(--ytm-bg-tertiary);
+  font-weight: 500;
+}
+
+.sidebar-item svg {
+  width: 24px;
+  height: 24px;
+  margin-right: 24px;
+  fill: currentColor;
 }
 
 /* ============================================
    CONTENIDO PRINCIPAL
    ============================================ */
-
 .main-content {
   flex: 1;
-  overflow-y: auto;
-  padding: 0;
+  margin-left: 240px;
+  margin-right: 0;
+  background-color: var(--ytm-bg-primary);
+  padding: 24px;
+  min-height: calc(100vh - 64px - 80px);
+  position: relative;
+  z-index: 1;
+  transition: margin-right 0.3s ease;
 }
 
-.main-content h1,
-.main-content h2,
-.main-content h3,
-.main-content h4,
-.main-content h5,
-.main-content h6 {
-  color: var(--text-primary);
-}
-
-.main-content p {
-  color: var(--text-secondary);
+/* Cuando hay sidebar derecho, ajustar el margen */
+.main-layout.has-sidebar-right .main-content {
+  margin-right: 360px;
 }
 
 /* ============================================
-   SIDEBAR DERECHO - UP NEXT
+   ALERTAS
    ============================================ */
-
-.sidebar-right {
-  width: 320px;
-  background-color: var(--bg-sidebar);
-  padding: 1rem;
-  flex-shrink: 0;
-  border-left: 1px solid #303030;
-  overflow-y: auto;
-  display: none;
+.alert-error {
+  background-color: #cc0000;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 12px 16px;
 }
 
-@media (min-width: 1200px) {
-  .sidebar-right {
-    display: block;
-  }
-}
-
-.sidebar-right-content h6 {
-  color: var(--text-secondary);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.queue-list {
-  margin-top: 1rem;
-}
-
-.queue-item {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  margin-bottom: 0.25rem;
-}
-
-.queue-item:hover {
-  background-color: var(--bg-hover);
-}
-
-.queue-item.active {
-  background-color: var(--bg-hover);
-}
-
-.queue-item-number {
-  width: 24px;
-  color: var(--text-secondary);
-  font-size: 0.875rem;
+.alert-no-results {
+  background-color: transparent;
+  border: none;
+  color: var(--ytm-text-secondary);
+  padding: 48px 24px;
   text-align: center;
 }
 
-.queue-item-artwork {
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 4px;
-  margin: 0 0.75rem;
-}
-
-.queue-item-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.queue-item-title {
-  color: var(--text-primary);
-  font-size: 0.875rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.queue-item-artist {
-  color: var(--text-secondary);
-  font-size: 0.75rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.queue-item-duration {
-  color: var(--text-secondary);
-  font-size: 0.75rem;
-  margin-left: 0.5rem;
+.alert-no-results h5 {
+  color: var(--ytm-text-primary);
+  margin-top: 16px;
 }
 
 /* ============================================
-   TARJETAS DE MÚSICA
+   RESULTADOS
    ============================================ */
+.results-header {
+  margin-bottom: 24px;
+}
 
+.results-title {
+  color: var(--ytm-text-primary);
+  font-size: 24px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.results-count {
+  background-color: var(--ytm-bg-tertiary);
+  color: var(--ytm-text-primary);
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ============================================
+   TARJETAS DE MÚSICA - Estilo YouTube Music
+   ============================================ */
 .music-card {
-  background-color: var(--bg-card);
+  background-color: var(--ytm-bg-secondary);
   border: none;
-  transition: background-color 0.2s;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: var(--transition);
   cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .music-card:hover {
-  background-color: var(--bg-hover);
+  background-color: var(--ytm-bg-tertiary);
+  transform: translateY(-4px);
 }
 
 .card-img-container {
-  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
   overflow: hidden;
+  background-color: var(--ytm-bg-tertiary);
+  position: relative;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.music-card:hover .card-img-top {
+  transform: scale(1.05);
 }
 
 .card-overlay {
@@ -279,7 +290,7 @@ body {
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.2s;
+  transition: var(--transition);
 }
 
 .music-card:hover .card-overlay {
@@ -287,108 +298,230 @@ body {
 }
 
 .play-button {
-  background-color: var(--accent-red);
+  background-color: var(--ytm-accent);
   border: none;
-  color: var(--text-primary);
-  width: 50px;
-  height: 50px;
+  color: white;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  transition: var(--transition);
+  transform: scale(0.9);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.music-card:hover .play-button {
+  transform: scale(1);
 }
 
 .play-button:hover {
-  background-color: #cc0000;
+  background-color: var(--ytm-accent-hover);
   transform: scale(1.1);
 }
 
-.music-card .card-title {
-  color: var(--text-primary);
-  font-size: 0.9rem;
+.play-button svg {
+  width: 24px;
+  height: 24px;
+  margin-left: 2px;
+}
+
+.music-card .card-body {
+  padding: 16px;
+  background-color: transparent;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-size: 16px;
   font-weight: 500;
+  color: var(--ytm-text-primary);
+  margin-bottom: 4px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.music-card .card-text {
-  color: var(--text-secondary);
-  font-size: 0.8rem;
+.card-artist {
+  color: var(--ytm-text-primary); /* Color blanco para el nombre del artista */
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* ============================================
-   BOTONES
-   ============================================ */
+.card-album {
+  color: var(--ytm-text-tertiary);
+  font-size: 13px;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
+.btn-preview,
 .btn-danger {
-  background-color: var(--accent-red);
-  border-color: var(--accent-red);
-  color: var(--text-primary);
+  background-color: transparent;
+  border: 1px solid var(--ytm-border);
+  color: var(--ytm-text-primary);
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 18px;
+  transition: var(--transition);
+  font-size: 14px;
+  width: 100%;
 }
 
+.btn-preview:hover,
 .btn-danger:hover {
-  background-color: #cc0000;
-  border-color: #cc0000;
-  color: var(--text-primary);
+  background-color: var(--ytm-bg-tertiary);
+  border-color: var(--ytm-border);
+  color: var(--ytm-text-primary);
 }
 
 .btn-no-preview {
-  background-color: #303030;
-  border: none;
-  color: var(--text-secondary);
+  background-color: transparent;
+  border: 1px solid var(--ytm-border);
+  color: var(--ytm-text-tertiary);
+  font-weight: 400;
+  padding: 8px 16px;
+  border-radius: 18px;
   cursor: not-allowed;
-}
-
-.btn-link {
-  text-decoration: none;
-  color: var(--text-secondary);
-}
-
-.btn-link:hover {
-  color: var(--text-primary);
+  font-size: 14px;
+  width: 100%;
 }
 
 /* ============================================
-   ALERTAS
+   SIDEBAR DERECHO - Up Next
    ============================================ */
-
-.alert-error {
-  background-color: #cc0000;
-  border: none;
-  color: var(--text-primary);
+.sidebar-right {
+  width: 360px;
+  background-color: var(--ytm-bg-secondary);
+  border-left: 1px solid var(--ytm-border);
+  position: fixed;
+  right: 0;
+  top: 64px;
+  bottom: 80px; /* Altura del reproductor */
+  overflow-y: auto;
+  padding: 16px;
+  z-index: 999;
 }
 
-.alert-no-results {
-  background-color: var(--bg-card);
-  border: none;
-  color: var(--text-primary);
+.sidebar-right-content h6 {
+  color: var(--ytm-text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.queue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.queue-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  gap: 12px;
+}
+
+.queue-item:hover {
+  background-color: var(--ytm-bg-tertiary);
+}
+
+.queue-item.active {
+  background-color: var(--ytm-bg-tertiary);
+}
+
+.queue-item-number {
+  width: 24px;
+  color: var(--ytm-text-tertiary);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.queue-item-artwork {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.queue-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.queue-item-title {
+  color: var(--ytm-text-primary);
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.queue-item-artist {
+  color: var(--ytm-text-primary); /* Color blanco para el nombre del artista */
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.queue-item-duration {
+  color: var(--ytm-text-tertiary);
+  font-size: 13px;
+  flex-shrink: 0;
 }
 
 /* ============================================
-   REPRODUCTOR DE AUDIO FIJO
+   REPRODUCTOR FIJO - Estilo YouTube Music
    ============================================ */
-
 .audio-player-fixed {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: var(--bg-card);
-  border-top: 1px solid #303030;
-  padding: 0.5rem 0;
-  z-index: 1000;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+  height: 80px;
+  background-color: var(--ytm-bg-secondary);
+  border-top: 1px solid var(--ytm-border);
+  z-index: 1002;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
 }
 
 .player-artwork {
   width: 56px;
   height: 56px;
-  object-fit: cover;
   border-radius: 4px;
+  object-fit: cover;
+  margin-right: 16px;
 }
 
 .player-track-name {
-  color: var(--text-primary);
-  font-size: 0.875rem;
+  color: var(--ytm-text-primary);
+  font-size: 14px;
   font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
@@ -397,8 +530,8 @@ body {
 }
 
 .player-track-artist {
-  color: var(--text-secondary);
-  font-size: 0.75rem;
+  color: var(--ytm-text-primary); /* Color blanco para el nombre del artista */
+  font-size: 13px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -406,11 +539,38 @@ body {
 }
 
 .player-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   justify-content: center;
 }
 
+.player-controls .btn-link {
+  color: var(--ytm-text-primary);
+  padding: 8px;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-controls .btn-link:hover {
+  color: var(--ytm-text-primary);
+  background-color: var(--ytm-bg-tertiary);
+  border-radius: 50%;
+}
+
+.player-controls .btn-link svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
 .player-progress {
+  width: 100%;
   max-width: 600px;
+  margin: 0 auto;
 }
 
 .player-progress audio {
@@ -419,68 +579,172 @@ body {
   outline: none;
 }
 
-/* Estilos para controles de audio */
+/* Estilos personalizados para el elemento audio */
 audio::-webkit-media-controls-panel {
-  background-color: var(--bg-card);
+  background-color: var(--ytm-bg-tertiary);
 }
 
 audio::-webkit-media-controls-play-button {
-  background-color: var(--accent-red);
+  background-color: var(--ytm-accent);
   border-radius: 50%;
 }
 
 audio::-webkit-media-controls-current-time-display,
 audio::-webkit-media-controls-time-remaining-display {
-  color: var(--text-primary);
-  font-size: 0.75rem;
+  color: var(--ytm-text-primary);
+  font-size: 12px;
 }
 
 audio::-webkit-media-controls-timeline {
-  background-color: #303030;
+  background-color: var(--ytm-border);
   border-radius: 2px;
 }
 
 audio::-webkit-media-controls-volume-slider {
-  background-color: #303030;
+  background-color: var(--ytm-border);
+}
+
+/* ============================================
+   ESTADO INICIAL
+   ============================================ */
+.text-center {
+  text-align: center;
+}
+
+.text-center h1 {
+  color: var(--ytm-text-primary);
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.text-white-50 {
+  color: var(--ytm-text-secondary);
+  font-size: 16px;
 }
 
 /* ============================================
    RESPONSIVE
    ============================================ */
+@media (max-width: 1200px) {
+  .sidebar-right {
+    display: none;
+  }
+  
+  .main-content {
+    margin-right: 0 !important;
+  }
+  
+  .main-layout.has-sidebar-right .main-content {
+    margin-right: 0 !important;
+  }
+}
 
 @media (max-width: 768px) {
   .sidebar-left {
-    width: 0;
-    overflow: hidden;
-    padding: 0;
-    border: none;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
   }
-
-  .sidebar-right {
-    display: none !important;
+  
+  .sidebar-left.open {
+    transform: translateX(0);
   }
-
+  
+  .main-content {
+    margin-left: 0;
+    padding: 16px;
+  }
+  
   .ytm-search {
     max-width: 100%;
   }
-
-  .player-artwork,
+  
   .player-track-name,
   .player-track-artist {
+    max-width: 120px;
+  }
+  
+  .player-controls {
+    gap: 8px;
+  }
+  
+  .audio-player-fixed .col-auto.d-none.d-lg-flex {
     display: none !important;
   }
 }
 
 @media (max-width: 576px) {
-  .app-container {
-    padding-bottom: 100px;
+  .main-content {
+    padding: 12px;
   }
-
-  .player-controls {
-    gap: 0.5rem !important;
+  
+  .results-title {
+    font-size: 20px;
   }
-
+  
+  .card-img-container {
+    aspect-ratio: 1;
+  }
+  
+  .audio-player-fixed .col-auto.d-none.d-md-flex {
+    display: none !important;
+  }
+  
   .player-progress {
     max-width: 100%;
   }
+}
+
+/* ============================================
+   SCROLLBAR PERSONALIZADO
+   ============================================ */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ytm-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ytm-bg-tertiary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ytm-border);
+}
+
+/* ============================================
+   ANIMACIONES
+   ============================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   ACCESIBILIDAD
+   ============================================ */
+.btn:focus,
+.form-control:focus,
+.play-button:focus {
+  outline: 2px solid var(--ytm-accent);
+  outline-offset: 2px;
 }
